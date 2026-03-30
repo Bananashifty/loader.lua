@@ -10,9 +10,9 @@ local Window = Rayfield:CreateWindow({
 local KeySettings = {
    Title = "Banana Hub | Access Key",
    Subtitle = "Get your key from LootLabs",
-   Note = "Link: lootlabs.com/your-link-here", -- Put your LootLabs link here
+   Note = "Link: lootlabs.com/votre-lien",
    SaveKey = true,
-   Key = {"BANANA_V70_SECRET"} -- Your Secret Key
+   Key = {"BANANA_V70_SECRET"}
 }
 
 local Tab = Window:CreateTab("Key Entry", 4483362458)
@@ -30,7 +30,6 @@ Tab:CreateInput({
                Image = 4483362458,
            })
            Window:Destroy()
-           -- Loads your V72 source
            loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/main/v70_source.lua"))()
        else
            Rayfield:Notify({
@@ -46,7 +45,7 @@ Tab:CreateInput({
 Tab:CreateButton({
    Name = "Get Key (Copy Link)",
    Callback = function()
-       setclipboard("https://loot-link.com/s?YOUR_ID") -- Your LootLabs Link
+       setclipboard("https://loot-link.com/votre-lien")
        Rayfield:Notify({
            Title = "Link Copied!",
            Content = "Paste the link in your browser to get the key.",
