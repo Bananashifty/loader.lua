@@ -25,23 +25,16 @@ Tab:CreateInput({
        if Text == KeySettings.Key[1] then
            Rayfield:Notify({
                Title = "Access Granted!",
-               Content = "Fetching the source... Please wait.",
+               Content = "Loading Banana Hub V72...",
                Duration = 5,
                Image = 4483362458,
            })
            
-           -- On ferme proprement la fenêtre de clé
            task.wait(1)
            Window:Destroy()
            
-           -- LA LIGNE CRUCIALE : On force l'exécution de la source
-           local success, err = pcall(function()
-               loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/main/v70_source.lua"))()
-           end)
-
-           if not success then
-               warn("Error loading script: " .. tostring(err))
-           end
+           -- LE BON LIEN RECTIFIÉ ICI :
+           loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/refs/heads/main/v70_source.lua"))()
        else
            Rayfield:Notify({
                Title = "Invalid Key",
