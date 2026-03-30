@@ -30,7 +30,7 @@ Tab:CreateInput({
                Image = 4483362458,
            })
            Window:Destroy()
-           -- Loads your V72 source from GitHub
+           -- Ton lien vers la source v70
            loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/main/v70_source.lua"))()
        else
            Rayfield:Notify({
@@ -46,6 +46,7 @@ Tab:CreateInput({
 Tab:CreateButton({
    Name = "Get Key (Copy Link)",
    Callback = function()
+       -- TON LIEN EST ICI MAINTENANT :
        setclipboard("https://loot-link.com/s?kc5LObQK")
        Rayfield:Notify({
            Title = "Link Copied!",
