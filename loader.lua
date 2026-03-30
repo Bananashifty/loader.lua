@@ -25,13 +25,23 @@ Tab:CreateInput({
        if Text == KeySettings.Key[1] then
            Rayfield:Notify({
                Title = "Access Granted!",
-               Content = "Loading Banana Hub V72...",
+               Content = "Fetching the source... Please wait.",
                Duration = 5,
                Image = 4483362458,
            })
+           
+           -- On ferme proprement la fenêtre de clé
+           task.wait(1)
            Window:Destroy()
-           -- Ton lien vers la source v70
-           loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/main/v70_source.lua"))()
+           
+           -- LA LIGNE CRUCIALE : On force l'exécution de la source
+           local success, err = pcall(function()
+               loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/main/v70_source.lua"))()
+           end)
+
+           if not success then
+               warn("Error loading script: " .. tostring(err))
+           end
        else
            Rayfield:Notify({
                Title = "Invalid Key",
@@ -46,7 +56,6 @@ Tab:CreateInput({
 Tab:CreateButton({
    Name = "Get Key (Copy Link)",
    Callback = function()
-       -- TON LIEN EST ICI MAINTENANT :
        setclipboard("https://loot-link.com/s?kc5LObQK")
        Rayfield:Notify({
            Title = "Link Copied!",
