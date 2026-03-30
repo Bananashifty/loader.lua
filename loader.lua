@@ -20,40 +20,19 @@ local Tab = Window:CreateTab("Key Entry", 4483362458)
 Tab:CreateInput({
    Name = "Enter Key",
    PlaceholderText = "Paste key here...",
-   RemoveTextAfterFocusLost = false,
    Callback = function(Text)
        if Text == KeySettings.Key[1] then
-           Rayfield:Notify({
-               Title = "Access Granted!",
-               Content = "Loading Banana Hub V72...",
-               Duration = 5,
-               Image = 4483362458,
-           })
-           
-           -- ON A ENLEVÉ Window:Destroy() ICI POUR ÉVITER L'ERREUR
-           
-           -- Chargement forcé du script principal
-           loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/refs/heads/main/v70_source.lua"))()
+           Rayfield:Notify({Title = "Access Granted!", Content = "Loading V72...", Duration = 5})
+           task.wait(1)
+           -- LE LIEN AVEC FORCE UPDATE (os.time)
+           loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/refs/heads/main/v70_source.lua?t=" .. os.time()))()
        else
-           Rayfield:Notify({
-               Title = "Invalid Key",
-               Content = "Please check your key or get a new one.",
-               Duration = 5,
-               Image = 4483362458,
-           })
+           Rayfield:Notify({Title = "Invalid Key", Content = "Check your key.", Duration = 5})
        end
    end,
 })
 
 Tab:CreateButton({
    Name = "Get Key (Copy Link)",
-   Callback = function()
-       setclipboard("https://loot-link.com/s?kc5LObQK")
-       Rayfield:Notify({
-           Title = "Link Copied!",
-           Content = "Paste the link in your browser to get the key.",
-           Duration = 5,
-           Image = 4483362458,
-       })
-   end,
+   Callback = function() setclipboard("https://loot-link.com/s?kc5LObQK") end,
 })
