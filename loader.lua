@@ -1,40 +1,31 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+-- ASTUCE : On récupère le jour actuel (ex: "30_03_2024")
+-- Cela crée un nouveau fichier de sauvegarde chaque jour !
+local DateKey = os.date("%d_%m_%y")
+
 local Window = Rayfield:CreateWindow({
-   Name = "🍌 BANANA HUB | V72",
-   LoadingTitle = "Banana Hub Loading...",
+   Name = "🍌 BANANA HUB | DAILY KEY",
+   LoadingTitle = "Checking Daily Access...",
    LoadingSubtitle = "by Bananashifty",
    ConfigurationSaving = { Enabled = false },
-   KeySystem = true, -- ACTIVE LA FENÊTRE DE CLÉ IMMÉDIATE
+   KeySystem = true,
    KeySettings = {
       Title = "Banana Hub | Access Key",
-      Subtitle = "Get your key from LootLabs",
-      Note = "Link: https://loot-link.com/s?kc5LObQK", -- TON LIEN LOOTLABS
-      FileName = "BananaKey", 
-      SaveKey = true, -- Sauvegarde la clé pour ne pas la retaper
+      Subtitle = "La clé expire toutes les 24h",
+      Note = "Lien LootLabs : https://loot-link.com/s?kc5LObQK",
+      FileName = "BananaKey_" .. DateKey, -- LE NOM CHANGE CHAQUE JOUR
+      SaveKey = true, 
       GrabKeyFromSite = false,
-      Key = {"BANANA_V70_SECRET"} -- TA CLÉ ICI
+      Key = {"BANANA_V70_SECRET"} -- TA CLÉ (Change-la ici si tu veux)
    }
 })
 
--- CET ONGLET APPARAÎTRA SEULEMENT APRÈS AVOIR ENTRÉ LA CLÉ
-local Tab = Window:CreateTab("Home", 4483362458)
+-- LANCEMENT AUTOMATIQUE APRÈS VALIDATION
+Rayfield:Notify({Title = "Accès Validé", Content = "Chargement du menu V70...", Duration = 5})
 
-Tab:CreateSection("Key Validated !")
-
-Tab:CreateButton({
-   Name = "🚀 LAUNCH V70 (BLACK MENU)",
-   Callback = function()
-       Rayfield:Notify({Title = "Success", Content = "Loading Black Menu...", Duration = 3})
-       Rayfield:Destroy() -- Ferme Rayfield proprement
-       task.wait(0.5)
-       -- CHARGE TON CODE V70 SUR GITHUB
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/refs/heads/main/v70_source.lua?t=" .. tick()))()
-   end,
-})
-
--- LANCEMENT AUTO APRÈS VALIDATION DE LA CLÉ
-Rayfield:Notify({Title = "Welcome", Content = "Opening V70...", Duration = 3})
 task.wait(1)
 Rayfield:Destroy() 
+
+-- CHARGE TON CODE NOIR V70 SUR GITHUB
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/refs/heads/main/v70_source.lua?t=" .. tick()))()
