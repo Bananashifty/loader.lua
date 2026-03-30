@@ -4,49 +4,37 @@ local Window = Rayfield:CreateWindow({
    Name = "🍌 BANANA HUB | V72",
    LoadingTitle = "Banana Hub Loading...",
    LoadingSubtitle = "by Bananashifty",
-   ConfigurationSaving = { Enabled = false }
+   ConfigurationSaving = { Enabled = false },
+   KeySystem = true, -- ACTIVE LA FENÊTRE DE CLÉ IMMÉDIATE
+   KeySettings = {
+      Title = "Banana Hub | Access Key",
+      Subtitle = "Get your key from LootLabs",
+      Note = "Link: https://loot-link.com/s?kc5LObQK", -- TON LIEN LOOTLABS
+      FileName = "BananaKey", 
+      SaveKey = true, -- Sauvegarde la clé pour ne pas la retaper
+      GrabKeyFromSite = false,
+      Key = {"BANANA_V70_SECRET"} -- TA CLÉ ICI
+   }
 })
 
--- ON CRÉE L'ONGLET DE SÉCURITÉ
-local Tab = Window:CreateTab("🔑 Key System", 4483362458)
+-- CET ONGLET APPARAÎTRA SEULEMENT APRÈS AVOIR ENTRÉ LA CLÉ
+local Tab = Window:CreateTab("Home", 4483362458)
 
-Tab:CreateSection("Get your access key")
+Tab:CreateSection("Key Validated !")
 
--- BOUTON POUR LE LIEN LOOTLABS
 Tab:CreateButton({
-   Name = "🔗 Get Key (LootLabs Link)",
+   Name = "🚀 LAUNCH V70 (BLACK MENU)",
    Callback = function()
-       setclipboard("https://loot-link.com/s?kc5LObQK")
-       Rayfield:Notify({Title = "Lien Copié !", Content = "Le lien LootLabs est dans ton presse-papier.", Duration = 5})
+       Rayfield:Notify({Title = "Success", Content = "Loading Black Menu...", Duration = 3})
+       Rayfield:Destroy() -- Ferme Rayfield proprement
+       task.wait(0.5)
+       -- CHARGE TON CODE V70 SUR GITHUB
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/refs/heads/main/v70_source.lua?t=" .. tick()))()
    end,
 })
 
-Tab:CreateSection("Enter access key")
-
--- ZONE POUR ENTRER LA CLÉ
-Tab:CreateInput({
-   Name = "Access Key",
-   PlaceholderText = "Entrez la clé ici...",
-   RemoveTextAfterFocusLost = false,
-   Callback = function(Text)
-       if Text == "BANANA_V70_SECRET" then -- TA CLÉ
-           Rayfield:Notify({Title = "Accès Autorisé !", Content = "Chargement du menu noir V70...", Duration = 5})
-           
-           task.wait(1)
-           Rayfield:Destroy() -- On ferme proprement le loader Rayfield
-           
-           -- ON CHARGE TON CODE V70 (LE MENU NOIR)
-           loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/refs/heads/main/v70_source.lua?t=" .. tick()))()
-       else
-           Rayfield:Notify({Title = "Clé Invalide", Content = "Veuillez vérifier votre clé LootLabs.", Duration = 5})
-       end
-   end,
-})
-
-Tab:CreateSection("Discord")
-Tab:CreateButton({
-   Name = "Join Discord",
-   Callback = function()
-       setclipboard("discord.gg/bananahub")
-   end,
-})
+-- LANCEMENT AUTO APRÈS VALIDATION DE LA CLÉ
+Rayfield:Notify({Title = "Welcome", Content = "Opening V70...", Duration = 3})
+task.wait(1)
+Rayfield:Destroy() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Bananashifty/v70_source.lua/refs/heads/main/v70_source.lua?t=" .. tick()))()
