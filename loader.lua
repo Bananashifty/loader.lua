@@ -1,42 +1,42 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
--- 1. NOTIFICATION DE COPIE (Apparaît direct au milieu)
+-- 1. NOTIFICATION INTERACTIVE (Bouton de copie immédiat)
 Rayfield:Notify({
-   Title = "🔑 KEY REQUIRED",
-   Content = "Click 'COPY' to get your LootLabs link!",
-   Duration = 15,
+   Title = "🔑 CLÉ REQUISE",
+   Content = "Clique sur le bouton 'COPIER' pour le lien LootLabs",
+   Duration = 20,
    Image = 4483362458,
    Actions = {
       Ignore = {
-         Name = "COPY LINK",
+         Name = "COPIER LE LIEN",
          Callback = function()
             setclipboard("https://loot-link.com/s?kc5LObQK")
-            Rayfield:Notify({Title = "Copied!", Content = "Link is in your clipboard.", Duration = 3})
+            Rayfield:Notify({Title = "Succès", Content = "Lien copié ! Colle-le dans ton navigateur.", Duration = 5})
          end
       },
    },
 })
 
--- 2. FENÊTRE DE CLÉ SANS SAUVEGARDE
+-- 2. SYSTÈME DE CLÉ (NOM CHANGÉ POUR FORCER LE REFRESH)
 local Window = Rayfield:CreateWindow({
-   Name = "🍌 BANANA HUB | V72",
-   LoadingTitle = "Banana Hub Loading...",
+   Name = "🍌 BANANA HUB V72 - NEW", -- Nom changé pour forcer le refresh
+   LoadingTitle = "Verification...",
    LoadingSubtitle = "by Bananashifty",
    ConfigurationSaving = { Enabled = false },
    KeySystem = true,
    KeySettings = {
-      Title = "Access Key",
-      Subtitle = "Paste the key from LootLabs below",
-      Note = "Use the notification to copy the link!", 
-      FileName = "BananaKey_Immediate", 
-      SaveKey = false, -- Oblige à remettre la clé à chaque fois
+      Title = "Access Key System",
+      Subtitle = "Entre la clé LootLabs ci-dessous",
+      Note = "Regarde la notification à droite pour copier le lien !", 
+      FileName = "BananaKey_ForceUpdate_99", -- Nouveau nom unique
+      SaveKey = false, -- Désactive la sauvegarde (Clé à chaque fois)
       GrabKeyFromSite = false,
       Key = {"BANANA_V70_SECRET"} 
    }
 })
 
--- LANCEMENT AUTO APRÈS VALIDATION
-Rayfield:Notify({Title = "Success", Content = "Opening V70...", Duration = 3})
+-- 3. LANCEMENT DU MENU NOIR (UNIQUEMENT SI CLÉ OK)
+Rayfield:Notify({Title = "Accès Autorisé", Content = "Chargement de V70 Source...", Duration = 3})
 task.wait(1)
 Rayfield:Destroy() 
 
